@@ -1,0 +1,5 @@
+SELECT f.title, COUNT(fp.feature_id) AS products
+FROM Features AS f
+LEFT JOIN features_products AS fp ON f.id = fp.feature_id
+GROUP BY f.title
+ORDER BY products DESC;

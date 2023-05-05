@@ -1,0 +1,6 @@
+SELECT c.title, p.title, p.price
+FROM Categories AS c
+JOIN Products AS p ON c.id = p.category_id
+WHERE p.price = (
+  SELECT MAX(price) FROM Products
+)

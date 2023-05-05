@@ -1,0 +1,40 @@
+CREATE DATABASE axisbits;
+
+CREATE TABLE Categories (
+    id int AUTO_INCREMENT,
+    title varchar(255) NOT NULL,
+    parent_id int DEFAULT 0,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Products (
+    id int AUTO_INCREMENT,
+    title varchar(255) NOT NULL,
+    price DOUBLE(10, 2),
+    category_id int,
+    PRIMARY KEY (id),
+    FOREIGN KEY (category_id) REFERENCES Categories(id)
+);
+
+CREATE TABLE Features (
+    id int AUTO_INCREMENT,
+    title varchar(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE FeaturesMeanings (
+    id int AUTO_INCREMENT,
+    meaning varchar(255),
+    feature_id int,
+    PRIMARY KEY (id),
+    FOREIGN KEY (feature_id) REFERENCES Features(id)
+);
+
+CREATE TABLE features_products (
+    id int AUTO_INCREMENT,
+    product_id int,
+    feature_id int,
+    PRIMARY KEY (id),
+    FOREIGN KEY (product_id) REFERENCES Products(id),
+    FOREIGN KEY (feature_id) REFERENCES Features(id)
+);
